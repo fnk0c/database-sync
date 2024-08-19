@@ -1,0 +1,4 @@
+security:
+  ignore-vulnerabilities:
+    70612:
+      reason: "Ignoring CVE-2019-8341 as we are not using the vulnerable from_string function in Jinja2."

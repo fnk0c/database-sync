@@ -1,0 +1,87 @@
+[project]
+name = "database-sync"
+dynamic = ["version"]
+description = "Syncs databases between different environments"
+authors = [
+    { name = "Franco Colombino", email = "franco.c.colombino@gmail.com" },
+    { name = "Felipe Rios", email = "felipe.rios.silva@outlook.com" },
+]
+dependencies = [
+    "PyYAML>=6.0.1",
+    "python-dotenv>=1.0.0",
+    "psycopg2>=2.9.9",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.4",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+    "Faker>=22.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/fnk0c/database-sync"
+
+[tool.pdm]
+version = { from = "database_sync/__init__.py" }
+
+[tool.pdm.scripts]
+start = { call = "database_sync.main:main" }
+export = { shell = "pdm export -o requirements.txt" }
+safety-check = { shell = "pdm run export && pdm run safety check -r requirements.txt --policy-file=.safety-policy.yaml" }
+test = { shell = "pdm run pytest -n 2 --cov-report xml:build/reports/coverage.xml --cov=database_sync tests/" }
+type-check = { shell = "pdm run mypy --ignore-missing-imports database_sync" }
+sbom = { shell = '''
+    pdm run cyclonedx-py environment "$(pdm info --python)" --of JSON -o build/reports/bom.json
+    name=$(pdm show --name 2>/dev/null)
+    version=$(pdm show --version 2>/dev/null)
+    jq --arg name "$name" \
+       --arg version "$version" \
+       '.metadata.component.name = $name | .metadata.component.version = $version' \
+       build/reports/bom.json > build/reports/temp.json
+    mv build/reports/temp.json build/reports/bom.json
+''' }
+
+[tool.pdm.dev-dependencies]
+utils = [
+    "types-PyYAML>=6.0.12.20240311",
+    "types-dateparser>=1.1.4.20240106",
+    "types-python-dateutil>=2.8.19.20240106",
+    "types-requests>=2.31.0.20240125",
+]
+quality = [
+    "black>=24.4.2",
+    "flake8>=7.0.0",
+    "flake8-annotations>=3.0.1",
+    "flake8-isort>=6.1.1",
+    "flake8-polyfill>=1.0.2",
+    "flake8-quotes>=3.3.2",
+    "isort>=5.13.2",
+    "mccabe>=0.7.0",
+    "mypy>=1.8.0",
+    "pep8-naming>=0.13.3",
+    "pycodestyle>=2.11.1",
+    "pyflakes>=3.2.0",
+    "pylint>=3.0.3",
+]
+security = [
+    "cyclonedx-bom>=4.0.0",
+    "safety>=3.0.1",
+]
+test = [
+    "beautifulsoup4>=4.12.3",
+    "faker>=23.1.0",
+    "html5lib>=1.1",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+]
+
+[tool.isort]
+profile = "black"
+balanced_wrapping = true
+include_trailing_comma = true
+no_lines_before = ["LOCALFOLDER"]
+src_paths = ["database_sync", "tests"]

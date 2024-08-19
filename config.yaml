@@ -1,0 +1,8 @@
+ignore:
+  - database: first-database
+    tables:
+      - table_example
+      - databasechangeloglock # usually this is a migration table, so we don't want to touch it
+  - database: second-database
+    tables:
+      - databasechangeloglock # usually this is a migration table, so we don't want to touch it
