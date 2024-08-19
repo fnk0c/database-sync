@@ -1,0 +1,9 @@
+ignore:
+  - database: organization
+    tables:
+      - organization_contact
+      - organization_log_source
+      - databasechangeloglock
+  - database: anotherdb
+    tables:
+      - databasechangeloglock
