@@ -4,7 +4,7 @@ dynamic = ["version"]
 description = "Syncs databases between different environments"
 authors = [
     { name = "Franco Colombino", email = "franco.c.colombino@gmail.com" },
-    { name = "Felipe Rios", email = "felipe.rios.silva@outlook.com" },
+    { name = "Felipe Rios", email = "rios0rios0@outlook.com" },
 ]
 dependencies = [
     "PyYAML>=6.0.1",

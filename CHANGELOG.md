@@ -19,7 +19,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Added
 
--
+- added GitHub pipelines code provided by pipelines project
 
 ### Changed
 
