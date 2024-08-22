@@ -13,14 +13,6 @@ dependencies = [
 ]
 requires-python = ">=3.9"
 
-[project.optional-dependencies]
-test = [
-    "pytest>=7.4.4",
-    "pytest-cov>=4.1.0",
-    "pytest-xdist>=3.5.0",
-    "Faker>=22.0.0",
-]
-
 [project.urls]
 Homepage = "https://github.com/fnk0c/database-sync"
 
@@ -33,16 +25,7 @@ export = { shell = "pdm export -o requirements.txt" }
 safety-check = { shell = "pdm run export && pdm run safety check -r requirements.txt --policy-file=.safety-policy.yaml" }
 test = { shell = "pdm run pytest -n 2 --cov-report xml:build/reports/coverage.xml --cov=database_sync tests/" }
 type-check = { shell = "pdm run mypy --ignore-missing-imports database_sync" }
-sbom = { shell = '''
-    pdm run cyclonedx-py environment "$(pdm info --python)" --of JSON -o build/reports/bom.json
-    name=$(pdm show --name 2>/dev/null)
-    version=$(pdm show --version 2>/dev/null)
-    jq --arg name "$name" \
-       --arg version "$version" \
-       '.metadata.component.name = $name | .metadata.component.version = $version' \
-       build/reports/bom.json > build/reports/temp.json
-    mv build/reports/temp.json build/reports/bom.json
-''' }
+sbom = { shell = "pdm run cyclonedx-py environment \"$(pdm info --python)\" --of JSON -o build/reports/bom.json" }
 
 [tool.pdm.dev-dependencies]
 utils = [
@@ -71,9 +54,7 @@ security = [
     "safety>=3.0.1",
 ]
 test = [
-    "beautifulsoup4>=4.12.3",
     "faker>=23.1.0",
-    "html5lib>=1.1",
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
     "pytest-xdist>=3.5.0",
@@ -85,3 +66,7 @@ balanced_wrapping = true
 include_trailing_comma = true
 no_lines_before = ["LOCALFOLDER"]
 src_paths = ["database_sync", "tests"]
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"

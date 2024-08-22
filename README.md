@@ -16,6 +16,7 @@ Before proceeding with the installation, ensure the following prerequisites are 
 - **Python**: Version 3.9 or higher. [Install Python](https://www.python.org/downloads/)
 - **PDM**: Version 2.11.2 or higher. [Install PDM](https://pdm-project.org/latest/#installation)
 - **pg_dump**: Version 15. [Install pg_dump](./INSTALL_PG_DUMP.md)
+- **psycopg2**: Version 2.9.9. [Install psycopg](https://www.psycopg.org/docs/install.html)
 
 ### Installation Guide
 
