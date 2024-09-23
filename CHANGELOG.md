@@ -20,6 +20,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Added
 
 - added GitHub pipelines code provided by pipelines project
+- added `.env.example` file to guide new users on the required environment variables for setting up their `.env` file
+
+## Fixed
+
+- ensured the correct password is set before executing the `pg_restore` command by adding `self.__set_pgpassword()` in the `restore` method
+- added `--no-owner` and `--no-acl` options in the `pg_restore` command to avoid restoring ownership and access control lists, resolving errors during database restoration
 
 ### Changed
 
