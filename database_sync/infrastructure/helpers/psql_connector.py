@@ -56,6 +56,7 @@ class PsqlConnector:
         return success
 
     def restore(self, database: str) -> int:
+        self.__set_pgpassword()
         command = [
             "pg_restore",
             "-h",
@@ -66,6 +67,8 @@ class PsqlConnector:
             self.__settings.user,
             "-d",
             database,
+            "--no-owner",
+            "--no-acl",
             f"{database}.dump",
         ]
         self.__logger.info(f"executing command: {' '.join(command)}")
