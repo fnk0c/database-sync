@@ -17,23 +17,21 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [1.1.0] - 2024-10-01
+
 ### Added
 
-- added GitHub pipelines code provided by pipelines project
+- added GitHub pipelines code provided by the pipelines project
 - added `.env.example` file to guide new users on the required environment variables for setting up their `.env` file
-
-## Fixed
-
-- ensured the correct password is set before executing the `pg_restore` command by adding `self.__set_pgpassword()` in the `restore` method
-- added `--no-owner` and `--no-acl` options in the `pg_restore` command to avoid restoring ownership and access control lists, resolving errors during database restoration
 
 ### Changed
 
+- changed to add `--no-owner` and `--no-acl` options in the `pg_restore` command to avoid restoring ownership and access control lists, resolving errors during database restoration
 - upgraded all dependencies to the latest versions
 
-### Removed
+### Fixed
 
--
+- fixed the password which was not set before executing the `pg_restore` command, by adding `self.__set_pgpassword()` in the `restore` method
 
 ## [1.0.0] - 2024-08-20
 
