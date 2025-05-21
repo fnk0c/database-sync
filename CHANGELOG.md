@@ -17,6 +17,24 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Added 
+
+- added required versions of jinja2 `3.1.6` and cryptography `44.0.1` to avoid vulnerabilities
+
+### Changed
+
+- updated required Python version from `3.9` to `3.9.2` for compatibility with the new cryptography version
+- updated safety version from `3.0.1` to `3.5.1` to address vulnerabilities
+
+### Fixed 
+
+- fixed missing exclude table command for the id_seq of the table ignored
+- fixed dropping the id_seq table for the ignored table
+
+### Removed
+
+- removed not used `ignore-vulnerabilities` from safety policy
+
 ## [1.1.0] - 2024-10-01
 
 ### Added

@@ -71,6 +71,10 @@ class PsqlDatabaseService(DatabaseService):
                 self.__logger.warning(f"ignoring table '{table}' on export")
                 ignore_command += ["--exclude-table", table]
 
+                seq_name = f"{table}_id_seq"
+                self.__logger.warning(f"ignoring sequence '{seq_name}' on export")
+                ignore_command += ["--exclude-table", seq_name]
+
         content = self.__connector.dump(database, ignore_command, f"{database}.dump")
 
         if not content:

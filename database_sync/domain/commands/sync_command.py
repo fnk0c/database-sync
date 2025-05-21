@@ -69,6 +69,10 @@ class SyncCommand:
                 if table in all_tables:
                     all_tables.remove(table)
 
+                seq_name = f"{table}_id_seq"
+                if seq_name in all_sequences:
+                    all_sequences.remove(seq_name)
+
         self.__services.dev.drop_tables(database, all_tables)
         self.__services.dev.drop_sequences(database, all_sequences)
         self.__services.dev.drop_views(database, all_views)
