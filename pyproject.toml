@@ -11,7 +11,7 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "psycopg2>=2.9.9",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.9.2"
 
 [project.urls]
 Homepage = "https://github.com/fnk0c/database-sync"
@@ -33,6 +33,8 @@ utils = [
     "types-dateparser>=1.1.4.20240106",
     "types-python-dateutil>=2.8.19.20240106",
     "types-requests>=2.31.0.20240125",
+    "jinja2>=3.1.6",
+    "cryptography>=44.0.1",
 ]
 quality = [
     "black>=24.4.2",
@@ -51,7 +53,7 @@ quality = [
 ]
 security = [
     "cyclonedx-bom>=4.0.0",
-    "safety>=3.0.1",
+    "safety>=3.5.1",
 ]
 test = [
     "faker>=23.1.0",
