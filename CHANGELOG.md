@@ -30,6 +30,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 - fixed missing exclude table command for the id_seq of the table ignored
 - fixed dropping the id_seq table for the ignored table
+- fixed `Dockerfile` and CI `workflow` to support Docker image delivery step
 
 ### Removed
 

@@ -15,18 +15,18 @@ RUN apt update && \
     tee /etc/apt/sources.list.d/postgresql.list && \
   apt update && \
   apt install -y postgresql-client-15 && \
-  groupadd --system -g 1001 themaker \
-  && useradd --system --create-home -g 1001 --no-user-group -u 1001 themaker
+  groupadd --system -g 1001 themaker && \
+  useradd --system --create-home -g 1001 --no-user-group -u 1001 themaker
+
 WORKDIR /home/themaker
 
 COPY dist/database_sync*.whl ./
+
 RUN chown -R themaker:themaker /home/themaker
 
-COPY ../../.venv .venv
-RUN cp -r .venv/lib/*/site-packages/* /usr/local/lib/python3.10/site-packages && rm -rf .venv
+RUN pip install --no-cache-dir database_sync*.whl && \
+    pip install --no-cache-dir psycopg2
 
 USER themaker
-RUN pip install --no-index database_sync*.whl \
-    && pip install --force-reinstall psycopg2
 
 ENTRYPOINT ["python", "-m", "database_sync"]

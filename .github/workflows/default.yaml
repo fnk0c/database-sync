@@ -15,6 +15,10 @@ on:
 #  checks: 'write' # code_check-style_golangci_lint
 #  contents: 'write' # delivery-release
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   default:
     uses: 'rios0rios0/pipelines/.github/workflows/python-docker.yaml@main'
