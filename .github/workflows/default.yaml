@@ -11,10 +11,14 @@ on:
       - 'main'
   workflow_dispatch:
 
-#permissions:
-#  checks: 'write' # code_check-style_golangci_lint
-#  contents: 'write' # delivery-release
+permissions:
+  contents: 'write'
+  packages: 'write'
+  security-events: 'write'
 
 jobs:
-  default:
+  ci:
+    uses: 'rios0rios0/pipelines/.github/workflows/python.yaml@main'
+
+  docker:
     uses: 'rios0rios0/pipelines/.github/workflows/python-docker.yaml@main'
