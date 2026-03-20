@@ -1,6 +1,6 @@
 # PostgreSQL Client Installation Guide
 
-This guide provides step-by-step instructions on how to install the PostgreSQL 15 client on your system using the official PostgreSQL APT repository. Follow these steps to ensure a successful installation.
+This guide provides step-by-step instructions on how to install the PostgreSQL 17 client on your system using the official PostgreSQL APT repository. Follow these steps to ensure a successful installation.
 
 ## Prerequisites
 
@@ -34,12 +34,12 @@ After adding the new repository, update your APT package index again to include 
 sudo apt update
 ```
 
-### 4. Install PostgreSQL 15 Client
+### 4. Install PostgreSQL 17 Client
 
-Now, install the PostgreSQL 15 client package:
+Now, install the PostgreSQL 17 client package:
 
 ```shell
-sudo apt install postgresql-client-15
+sudo apt install postgresql-client-17
 ```
 
 ### 5. Verify the Installation
