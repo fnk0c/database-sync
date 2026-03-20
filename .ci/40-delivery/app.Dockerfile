@@ -1,10 +1,5 @@
 FROM python:3.10-slim-bullseye@sha256:17de35f7050abebfd9bf15ec0efd94d2bda7b1a569337d99f2881d325042f952
 
-# First dependency block is for postgres 15 repository
-# Second block is for Psycopg2
-# Curl block is to download the key for the Postgres repository
-# Echo block is to add the repository to the sources list
-
 RUN apt update && \
   apt install -y \
     dirmngr ca-certificates software-properties-common apt-transport-https lsb-release curl \
@@ -14,7 +9,7 @@ RUN apt update && \
   echo deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main | \
     tee /etc/apt/sources.list.d/postgresql.list && \
   apt update && \
-  apt install -y postgresql-client-15 && \
+  apt install -y postgresql-client-17 && \
   groupadd --system -g 1001 themaker \
   && useradd --system --create-home -g 1001 --no-user-group -u 1001 themaker
 WORKDIR /home/themaker
