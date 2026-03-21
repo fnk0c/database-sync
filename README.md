@@ -15,7 +15,7 @@ Before proceeding with the installation, ensure the following prerequisites are 
 - **Docker**: Version 18.09 or higher. [Install Docker](https://docs.docker.com/install)
 - **Python**: Version 3.9.2 or higher. [Install Python](https://www.python.org/downloads/)
 - **PDM**: Version 2.11.2 or higher. [Install PDM](https://pdm-project.org/latest/#installation)
-- **pg_dump**: Version 17. [Install pg_dump](./INSTALL_PG_DUMP.md)
+- **pg_dump**: Version 17. [Install pg_dump](.docs/INSTALL_PG_DUMP.md)
 - **psycopg2**: Version 2.9.9. [Install psycopg](https://www.psycopg.org/docs/install.html)
 
 ### Installation Guide

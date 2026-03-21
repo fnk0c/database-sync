@@ -11,21 +11,21 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "psycopg2>=2.9.9",
 ]
-requires-python = ">=3.9.2"
+requires-python = ">=3.13.12"
 
 [project.urls]
 Homepage = "https://github.com/fnk0c/database-sync"
 
-[tool.pdm]
-version = { from = "database_sync/__init__.py" }
+[tool.pdm.version]
+source = "file"
+path = "database_sync/__init__.py"
 
 [tool.pdm.scripts]
 start = { call = "database_sync.main:main" }
-export = { shell = "pdm export -o requirements.txt" }
-safety-check = { shell = "pdm run export && pdm run safety check -r requirements.txt --policy-file=.safety-policy.yaml" }
-test = { shell = "pdm run pytest -n 2 --cov-report xml:build/reports/coverage.xml --cov=database_sync tests/" }
-type-check = { shell = "pdm run mypy --ignore-missing-imports database_sync" }
-sbom = { shell = "pdm run cyclonedx-py environment \"$(pdm info --python)\" --of JSON -o build/reports/bom.json" }
+safety-scan = { shell = "pdm export -o requirements.txt && safety check -r requirements.txt --policy-file=.safety-policy.yaml" }
+test = { shell = "pytest -n 2 --cov-report xml:build/reports/coverage.xml --cov=database_sync tests/" }
+type-check = { shell = "mypy database_sync" }
+sbom = { shell = "cyclonedx-py environment \"$(pdm info --python)\" --of JSON -o build/reports/bom.json" }
 
 [tool.pdm.dev-dependencies]
 utils = [
@@ -69,6 +69,9 @@ include_trailing_comma = true
 no_lines_before = ["LOCALFOLDER"]
 src_paths = ["database_sync", "tests"]
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [build-system]
-requires = ["pdm-pep517"]
-build-backend = "pdm.pep517.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
