@@ -17,10 +17,6 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
-### Changed
-
-- changed CI workflow to use a single `pdm-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
-
 ### Added
 
 - added required versions of jinja2 `3.1.6` and cryptography `44.0.1` to avoid vulnerabilities
@@ -30,6 +26,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Changed
 
+- changed CI workflow to use a single `pdm-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
 - updated required Python version from `3.9` to `3.13.12`
 - updated safety version from `3.0.1` to `3.5.1` to address vulnerabilities
 - updated build backend from deprecated `pdm-pep517` to `pdm-backend`
