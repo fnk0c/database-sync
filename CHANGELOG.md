@@ -17,6 +17,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- changed CI workflow to use a single `python-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
+
 ### Added
 
 - added required versions of jinja2 `3.1.6` and cryptography `44.0.1` to avoid vulnerabilities
