@@ -29,4 +29,7 @@ RUN useradd --create-home appuser
 USER appuser
 WORKDIR /home/appuser
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD ["python", "-c", "import database_sync; print('ok')"]
+
 ENTRYPOINT ["python", "-m", "database_sync"]
