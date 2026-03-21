@@ -19,7 +19,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Changed
 
-- changed CI workflow to use a single `python-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
+- changed CI workflow to use a single `pdm-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
 
 ### Added
 
