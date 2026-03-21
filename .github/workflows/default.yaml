@@ -17,8 +17,5 @@ permissions:
   security-events: 'write'
 
 jobs:
-  ci:
-    uses: 'rios0rios0/pipelines/.github/workflows/python.yaml@main'
-
-  docker:
-    uses: 'rios0rios0/pipelines/.github/workflows/python-docker.yaml@main'
+  default:
+    uses: 'rios0rios0/pipelines/.github/workflows/pdm-docker.yaml@main'
