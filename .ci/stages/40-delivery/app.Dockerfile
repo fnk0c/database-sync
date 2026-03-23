@@ -1,7 +1,7 @@
 FROM python:3.13-slim-bookworm AS builder
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc libpq-dev && \
+    apt-get install -y --no-install-recommends gcc libc6-dev libpq-dev && \
     rm -rf /var/lib/apt/lists/* && \
     pip install --no-cache-dir pdm
 
