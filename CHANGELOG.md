@@ -17,6 +17,11 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Fixed
+
+- fixed Docker build failing with `lstat /dist: no such file or directory` by making `app.Dockerfile` self-contained with PDM build inside the container
+- updated `app.Dockerfile` base image from `python:3.10-slim-bullseye` to `python:3.13-slim-bookworm` to match the project's Python version requirement
+
 ## [1.2.0] - 2026-03-23
 
 ### Added

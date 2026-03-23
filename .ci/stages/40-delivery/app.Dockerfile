@@ -1,13 +1,17 @@
-FROM python:3.10-slim-bullseye AS builder
+FROM python:3.13-slim-bookworm AS builder
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc libpq-dev && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    pip install --no-cache-dir pdm
 
-COPY dist/*.whl /tmp/
-RUN pip install --no-cache-dir /tmp/*.whl
+WORKDIR /build
+COPY pyproject.toml pdm.lock ./
+COPY database_sync/ database_sync/
+RUN pdm build --no-sdist && \
+    pip install --no-cache-dir dist/*.whl
 
-FROM python:3.10-slim-bullseye
+FROM python:3.13-slim-bookworm
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -22,7 +26,7 @@ RUN apt-get update && \
     apt-get purge -y --auto-remove curl gnupg2 lsb-release && \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+COPY --from=builder /usr/local/lib/python3.13/site-packages /usr/local/lib/python3.13/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 RUN useradd --create-home appuser
