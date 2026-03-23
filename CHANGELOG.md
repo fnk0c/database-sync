@@ -39,12 +39,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 - fixed Trivy `DS-0026` by adding `HEALTHCHECK` to `app.Dockerfile` and removing the old Dockerfile at `.ci/40-delivery/`
 - fixed dropping the `id_seq` table for the ignored table
-- fixed missing exclude table command for the `id_seq` of the table ignored
+- ensured the `id_seq` sequence for the ignored table is also excluded by adding the corresponding exclude-table command
 
 ### Removed
 
 - removed `export` script from `pyproject.toml` (inlined into `safety-scan`)
-- removed not used `ignore-vulnerabilities` from Safety policy
+- removed the unused `ignore-vulnerabilities` entry from the Safety policy
 
 ### Security
 
