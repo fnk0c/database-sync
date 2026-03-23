@@ -17,6 +17,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-03-23
+
 ### Fixed
 
 - fixed Docker build failing with `lstat /dist: no such file or directory` by making `app.Dockerfile` self-contained with PDM build inside the container
