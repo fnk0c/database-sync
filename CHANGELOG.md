@@ -17,27 +17,34 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-03-23
+
 ### Added
 
-- added required versions of jinja2 `3.1.6` and cryptography `44.0.1` to avoid vulnerabilities
 - added `Makefile` integrating `rios0rios0/pipelines` for standardized `make lint`, `make test`, and `make sast` targets
-- added multi-stage `app.Dockerfile` at `.ci/stages/40-delivery/` for Docker delivery with semver tagging
 - added full CI pipeline (`python.yaml`) with code checks, security scanning, and tests to the GitHub Actions workflow
+- added multi-stage `app.Dockerfile` at `.ci/stages/40-delivery/` for Docker delivery with semver tagging
+- added required versions of jinja2 `3.1.6` and cryptography `44.0.1` to avoid vulnerabilities
 
 ### Changed
 
 - changed CI workflow to use a single `pdm-docker.yaml` call instead of separate `python.yaml` + `python-docker.yaml` jobs, matching the standard pipeline composition pattern
-- updated required Python version from `3.9` to `3.13.12`
-- updated safety version from `3.0.1` to `3.5.1` to address vulnerabilities
-- updated build backend from deprecated `pdm-pep517` to `pdm-backend`
 - renamed `safety-check` script to `safety-scan` to match the pipelines convention
 - updated PR templates to reference `make lint`, `make test`, and `make sast` instead of manual `pdm run` commands
+- updated build backend from deprecated `pdm-pep517` to `pdm-backend`
+- updated required Python version from `3.9` to `3.13.12`
+- updated safety version from `3.0.1` to `3.5.1` to address vulnerabilities
 
 ### Fixed
 
-- fixed Trivy DS-0026 by adding `HEALTHCHECK` to `app.Dockerfile` and removing the old Dockerfile at `.ci/40-delivery/`
-- fixed missing exclude table command for the id_seq of the table ignored
-- fixed dropping the id_seq table for the ignored table
+- fixed Trivy `DS-0026` by adding `HEALTHCHECK` to `app.Dockerfile` and removing the old Dockerfile at `.ci/40-delivery/`
+- fixed dropping the `id_seq` table for the ignored table
+- ensured the `id_seq` sequence for the ignored table is also excluded by adding the corresponding exclude-table command
+
+### Removed
+
+- removed `export` script from `pyproject.toml` (inlined into `safety-scan`)
+- removed the unused `ignore-vulnerabilities` entry from the Safety policy
 
 ### Security
 
@@ -49,11 +56,6 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 - updated `filelock` from `3.16.1` to `3.19.1` to fix 3 known vulnerabilities
 - updated `marshmallow` from `3.22.0` to `4.0.1` to fix known vulnerability
 - updated `regex` from `2024.11.6` to `2026.1.15` to fix known vulnerability
-
-### Removed
-
-- removed not used `ignore-vulnerabilities` from safety policy
-- removed `export` script from `pyproject.toml` (inlined into `safety-scan`)
 
 ## [1.1.0] - 2024-10-01
 
